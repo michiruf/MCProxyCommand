@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "proxycommand",
+  "id": "proxy-command",
   "version": "${version}",
   "name": "ProxyCommand",
   "description": "",

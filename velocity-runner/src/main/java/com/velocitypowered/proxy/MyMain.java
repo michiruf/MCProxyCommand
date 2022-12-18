@@ -12,7 +12,7 @@ import com.velocitypowered.api.plugin.PluginManager;
 import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.proxy.plugin.VelocityPluginManager;
 import com.velocitypowered.proxy.plugin.loader.VelocityPluginContainer;
-import de.michiruf.velocity.proxycommand.ProxyCommandPlugin;
+import de.michiruf.proxycommand.velocity.ProxyCommandPlugin;
 import io.netty.util.ResourceLeakDetector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

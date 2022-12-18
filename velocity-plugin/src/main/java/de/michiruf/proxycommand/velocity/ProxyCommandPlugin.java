@@ -1,4 +1,4 @@
-package de.michiruf.velocity.proxycommand;
+package de.michiruf.proxycommand.velocity;
 
 import com.google.inject.Inject;
 import com.velocitypowered.api.event.Subscribe;
@@ -18,10 +18,9 @@ import org.slf4j.Logger;
  * @since 2022-12-15
  */
 @Plugin(
-        id = "proxycommand",
+        id = "proxy-command",
         name = "ProxyCommand",
-        version = "1.0-SNAPSHOT",
-        description = "Execute commands on the proxy server from the minecraft nodes",
+        description = "Execute commands on the proxy server from minecraft nodes",
         authors = {"Michael Ruf"}
 )
 public class ProxyCommandPlugin {

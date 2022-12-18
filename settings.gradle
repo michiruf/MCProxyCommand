@@ -8,7 +8,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'proxycommand'
+rootProject.name = 'proxy-command'
 include 'common'
 include 'fabric-mod'
 include 'velocity-plugin'

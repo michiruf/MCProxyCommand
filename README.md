@@ -31,10 +31,15 @@ For example, you can teleport all players to a different server with a command b
 execute as @a run proxycommand "server SERVERNAME"
 ```
 
+## Changelog
+
+Changelog per release cycle can be found [here](https://github.com/michiruf/MCProxyCommand/blob/master/CHANGELOG.md).
+This changelog information from one release to the next one.
+
 
 ## License
 
-[MIT License](https://github.com/michiruf/MCAllayFollowAlways/blob/master/LICENSE)
+[MIT License](https://github.com/michiruf/MCProxyCommand/blob/master/LICENSE)
 
 
 ## Additional reading (for devs)
