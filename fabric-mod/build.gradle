@@ -1,0 +1,118 @@
+plugins {
+    id 'fabric-loom' version '1.0-SNAPSHOT'
+    id 'com.modrinth.minotaur' version '2.+'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+repositories {
+    maven {
+        url = 'https://api.modrinth.com/maven'
+    }
+}
+
+dependencies {
+    // To change the versions see the gradle.properties file
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+    // Fabric API
+    // It took 2 days to find out, that the dependency mods use or require the deprecated api of fabric,
+    // which is distributed with the fabric-api release on modrinth. How is something like this happening?
+    // Even after figuring this out, the stuff distributed there does not work with these mod dependencies,
+    // although the mods and versions are completely identical. I made dependency diffs and checked them myself:
+    // except the fabric-gametest-api-v1 everything was present and equal.
+    //modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    //modImplementation("net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}") {
+    //    //exclude group: 'fabric-api-deprecated', module 'fabric-gametest-api-v1'
+    //}
+    // However, depending on the modrinth version of fabric-api works, so we just go with that and ignore
+    // this weirdness
+    //modImplementation "maven.modrinth:fabric-api:${project.fabric_version}"
+    // But if we do this, then the code for this project does not know fabric-api, so we just declare them
+    // as compile time
+    modCompileOnly "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modCompileOnly "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
+
+    // NOTE To work with the problems above, place these mods inside the mods folder
+    // List of mods:
+    // * Fabric-API 0.68.0+1.19.2
+    // * FabricProxy-Lite 2.3.0
+    // * CrossStitch 0.1.5
+
+    // FabricProxy-Lite including transitives
+    // https://github.com/OKTW-Network/FabricProxy-Lite
+    //modImplementation 'maven.modrinth:fabricproxy-lite:v2.3.0'
+    //modImplementation 'com.moandjiezana.toml:toml4j:0.7.2'
+
+    // CrossStitch (basically required for FabricProxy-Lite, increases the compatibility and allows operators)
+    // https://github.com/VelocityPowered/CrossStitch
+    //modImplementation 'maven.modrinth:crossstitch:0.1.5'
+
+    // TODO These problems here could occur because loom, fabric or sponge or just something remaps the stuff
+    // Error got because Identifier is null
+
+    implementation project(':common')
+}
+
+modrinth {
+    projectId = 'proxycommand'
+    versionNumber = project.version
+    versionType = 'alpha'
+    gameVersions = ['1.19.2']
+    loaders = ['fabric']
+    dependencies {
+        required.project 'fabric-api'
+        required.project 'fabricproxy-lite'
+        required.project 'crossstitch'
+    }
+    uploadFile = remapJar
+    syncBodyFrom = rootProject.file("README.md").text
+
+    // Use the environment variable `$MODRINTH_TOKEN` for the token
+    // token = 'mySecretToken'
+}
+
+
+processResources {
+    inputs.property 'version', project.version
+    filteringCharset 'UTF-8'
+
+    filesMatching('fabric.mod.json') {
+        expand 'version': project.version
+    }
+}
+
+def targetJavaVersion = 17
+tasks.withType(JavaCompile).configureEach {
+    // ensure that the encoding is set to UTF-8, no matter what the system default is
+    // this fixes some edge cases with special characters not displaying correctly
+    // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
+    // If Javadoc is generated, this must be specified in that task too.
+    it.options.encoding = "UTF-8"
+    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
+        it.options.release = targetJavaVersion
+    }
+}
+
+java {
+    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
+    if (JavaVersion.current() < javaVersion) {
+        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+    }
+    archivesBaseName = project.archives_base_name
+    // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+    // if it is present.
+    // If you remove this line, sources will not be generated.
+    withSourcesJar()
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.archives_base_name}" }
+    }
+}
+
+tasks.runServer.workingDir = 'run'

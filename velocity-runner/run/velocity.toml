@@ -1,0 +1,31 @@
+config-version = "2.5"
+
+# Bind to default minecraft port -1 to not have to look this up again and again and again
+bind = "0.0.0.0:25564"
+
+# General options
+motd = "&#09add3Local"
+#kick-existing-players = true
+show-max-players = 20
+
+# Forwarding options
+player-info-forwarding-mode = "modern"
+forwarding-secret-file = "secret.txt"
+
+[servers]
+minecraft = "localhost:25565"
+minecraft2 = "localhost:25566"
+
+# Specify the order of servers that are used
+try = [
+  "minecraft"
+]
+
+# Eliminate default forced hosts by not specifying anything
+[forced-hosts]
+
+[advanced]
+announce-proxy-commands = false
+
+[metrics]
+enabled = false

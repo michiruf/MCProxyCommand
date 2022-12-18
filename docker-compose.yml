@@ -1,0 +1,44 @@
+# This docker file exists to test the setup on a completely fresh environment
+# It is not ment for production environments!
+# For production environments, use itzg's minecraft server for minecraft and itzg's bungeecord for velocity
+# https://github.com/itzg/docker-minecraft-server (minecraft)
+# https://github.com/itzg/docker-bungeecord (velocity)
+
+velocity:
+  container_name: velocity
+  ports:
+    - '25564:25564'
+  build: .
+  command: ./gradlew :velocity-runner:run
+  links:
+    - minecraft
+  tty: true
+  restart: always
+
+minecraft:
+  container_name: minecraft
+  expose:
+    - '25565'
+  build: .
+  command: ./gradlew :fabric-mod:runServer
+  tty: true
+  restart: always
+
+#minecraft:
+#  container_name: minecraft-cluster_building_1.19
+#  image: itzg/minecraft-server:java17-alpine
+#  expose:
+#    - '25565'
+#  ports:
+#    - '25566:25565'
+#  environment:
+#    EULA: 'true'
+#    TYPE: FABRIC
+#    VERSION: 1.19.2
+#    REMOVE_OLD_MODS: 'true'
+#  volumes:
+#    - './DATA/server/:/data/'
+#    - './DATA/BUILDING/mods/:/mods/'
+#    - '/etc/timezone:/etc/timezone:ro'
+#  tty: true
+#  restart: always
