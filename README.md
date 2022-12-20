@@ -31,10 +31,15 @@ For example, you can teleport all players to a different server with a command b
 execute as @a run proxycommand "server SERVERNAME"
 ```
 
+## Synergizing other mods
+
+* [ServerPortals](https://github.com/michiruf/MCServerPortals) ([modrinth](https://modrinth.com/mod/server-portals))
+
+
 ## Changelog
 
 Changelog per release cycle can be found [here](https://github.com/michiruf/MCProxyCommand/blob/master/CHANGELOG.md).
-This changelog information from one release to the next one.
+This changelog contains information from one release to the next one.
 
 
 ## License

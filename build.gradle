@@ -35,6 +35,11 @@ allprojects {
         }
     }
 
-    project.version = "${project.ext.getLatestTag()}-${project.ext.getCurrentCommitCount()}-${project.ext.getCurrentShortRevision()}"
+    try {
+        project.version = "${project.ext.getLatestTag()}-${project.ext.getCurrentCommitCount()}-${project.ext.getCurrentShortRevision()}"
+    } catch(Exception ignored) {
+        println('Either git is not set up properly, or there is no tag yet in the repository. Falling back to version \'0\'')
+        project.version = '0'
+    }
     project.group = 'michiruf'
 }

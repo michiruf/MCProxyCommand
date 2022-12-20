@@ -1,5 +1,7 @@
 name: Build
 
+# TODO Also publish velocity plugin on modrinth
+
 on:
   workflow_dispatch:
   push:
