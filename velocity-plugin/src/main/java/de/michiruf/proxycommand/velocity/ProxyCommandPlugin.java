@@ -20,7 +20,8 @@ import org.slf4j.Logger;
 @Plugin(
         id = "proxy-command",
         name = "ProxyCommand",
-        description = "Execute commands on the proxy server from minecraft nodes",
+        description = "Execute commands on a velocity proxy server from minecraft nodes",
+        url = "https://github.com/michiruf/MCProxyCommand",
         authors = {"Michael Ruf"}
 )
 public class ProxyCommandPlugin {
