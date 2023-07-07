@@ -1,5 +1,6 @@
 # User-specific stuff
 .idea/
+.vscode/
 
 *.iml
 *.ipr
@@ -144,3 +145,7 @@ velocity-runner/run/*
 !velocity-runner/run/secret.txt
 !velocity-runner/run/plugins/
 velocity-runner/run/plugins/bStats
+
+# exclude minecraft server jar used for testing
+minecraft-server/.fabric
+minecraft-server/eula.txt

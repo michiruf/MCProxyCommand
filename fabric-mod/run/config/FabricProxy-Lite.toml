@@ -1,4 +1,4 @@
-hackOnlineMode = true
+hackOnlineMode = false
 hackEarlySend = false
 hackMessageChain = true
 secret = "TEST"

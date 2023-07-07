@@ -1,31 +1,26 @@
-config-version = "2.5"
-
+config-version = "2.6"
 # Bind to default minecraft port -1 to not have to look this up again and again and again
 bind = "0.0.0.0:25564"
-
-# General options
-motd = "&#09add3Local"
+# What should be the MOTD? This gets displayed when the player adds your server to
+# their server list. Only MiniMessage format is accepted.
+motd = "<#09add3>Local"
 #kick-existing-players = true
 show-max-players = 20
-
 # Forwarding options
 player-info-forwarding-mode = "modern"
 forwarding-secret-file = "secret.txt"
+# Eliminate default forced hosts by not specifying anything
+forced-hosts = {}
 
 [servers]
-minecraft = "localhost:25565"
-minecraft2 = "localhost:25566"
-
-# Specify the order of servers that are used
-try = [
-  "minecraft"
-]
-
-# Eliminate default forced hosts by not specifying anything
-[forced-hosts]
+	minecraft = "localhost:25565"
+	minecraft2 = "localhost:25566"
+	# Specify the order of servers that are used
+	try = ["minecraft"]
 
 [advanced]
-announce-proxy-commands = false
+	announce-proxy-commands = false
 
 [metrics]
-enabled = false
+	enabled = false
+

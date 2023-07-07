@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "proxy-command",
+  "version": "${version}",
+  "name": "ProxyCommand",
+  "description": "",
+  "authors": [
+    "michiruf"
+  ],
+  "contact": {
+    "website": "https://github.com/michiruf"
+  },
+  "license": "MIT",
+  "icon": "assets/proxycommand/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "de.michiruf.proxycommand.fabric.ProxyCommandMod"
+    ]
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.14.21",
+    "fabric": "*",
+    "minecraft": "1.20.1",
+    "fabricproxy-lite": ">=2.6.0"
+  }
+}

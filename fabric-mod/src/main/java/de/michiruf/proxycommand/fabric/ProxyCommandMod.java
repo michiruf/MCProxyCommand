@@ -1,5 +1,6 @@
 package de.michiruf.proxycommand.fabric;
 
+import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
@@ -51,8 +52,8 @@ public class ProxyCommandMod implements ModInitializer {
             return -1;
         }
 
-        // To communicate with the proxy, a S2C packet sent via the players connection is needed (which
-        // is the connection to the proxy indeed)
+        LOGGER.info("Proxycommand \"" + command + "\" was triggered by " + player.getName().getString());
+        // To communicate with the proxy, a S2C packet sent via the players connection is needed (the player's connection is the means of communication with the proxy)
         ServerPlayNetworking.send(
                 player,
                 new Identifier(ProxyCommandConstants.COMMAND_PACKET_ID),

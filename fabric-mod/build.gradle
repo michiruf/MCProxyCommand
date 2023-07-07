@@ -4,10 +4,12 @@ plugins {
 }
 
 // Fabric Properties. Check these on https://modmuss50.me/fabric.html
-def minecraft_version='1.19.2'
-def yarn_mappings='1.19.2+build.28'
-def loader_version='0.14.11'
-def fabric_version='0.68.0+1.19.2'
+def minecraft_version='1.20.1'
+
+def yarn_mappings='1.20.1+build.9'
+def loader_version='0.14.21'
+
+def fabric_version='0.84.0+1.20.1'
 
 repositories {
     // NOTE This should currently be not needed, but to fiddle around with this dependency issue
@@ -67,12 +69,11 @@ modrinth {
     projectId = 'proxy-command'
     versionNumber = project.version
     versionType = project.version.contains('SNAPSHOT') ? 'alpha' : 'release'
-    gameVersions = ['1.19.2']
+    gameVersions = ['1.20.1']
     loaders = ['fabric']
     dependencies {
         required.project 'fabric-api'
         required.project 'fabricproxy-lite'
-        required.project 'crossstitch'
     }
     uploadFile = remapJar
     syncBodyFrom = rootProject.file("README.md").text
@@ -116,3 +117,4 @@ java {
 }
 
 tasks.runServer.workingDir = 'run'
+
