@@ -27,27 +27,25 @@ public class MyMain {
 
     private static final Logger logger;
 
+
     /**
      * @see Velocity#main(String...)
      */
-    
-    public static void main(String... args) {
-      final ProxyOptions options = new ProxyOptions(args);
-      if (options.isHelp()) {
-        return;
-      }
-         long startTime = System.currentTimeMillis();
-         VelocityServer server = new VelocityServer(options);
-      server.start();
-      Runtime.getRuntime().addShutdownHook(new Thread(() -> server.shutdown(false),
-          "Shutdown thread"));
-         double bootTime = (System.currentTimeMillis() - startTime) / 1000d;
-      logger.info("Done ({}s)!", new DecimalFormat("#.##").format(bootTime));
-      server.getConsoleCommandSource().start();
-         // If we don't have a console available (because SimpleTerminalConsole returned), then we still
-      // need to wait, otherwise the JVM will reap us as no non-daemon threads will be active once the
-      // main thread exits.
-      server.awaitProxyShutdown();
+    public static void main(String[] args) {
+        ProxyOptions options = new ProxyOptions(args);
+        if (!options.isHelp()) {
+            long startTime = System.currentTimeMillis();
+            VelocityServer server = new VelocityServer(options);
+            loadMyPlugin(server, ProxyCommandPlugin.class);
+            server.start();
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                server.shutdown(false);
+            }, "Shutdown thread"));
+            double bootTime = (double) (System.currentTimeMillis() - startTime) / 1000.0;
+            logger.info("Done ({}s)!", (new DecimalFormat("#.##")).format(bootTime));
+            server.getConsoleCommandSource().start();
+            server.awaitProxyShutdown();
+        }
     }
     
     // TODO public to access this from within the velocity source proxy
