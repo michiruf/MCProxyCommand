@@ -45,18 +45,14 @@ dependencies {
 
     // NOTE To work with the problems above, place these mods inside the mods folder
     // List of mods:
-    // * Fabric-API 0.68.0+1.19.2
-    // * FabricProxy-Lite 2.3.0
-    // * CrossStitch 0.1.5
+    // * Fabric-API 0.84.0+1.20.1
+    // * FabricProxy-Lite 2.6.0
 
     // FabricProxy-Lite including transitives
     // https://github.com/OKTW-Network/FabricProxy-Lite
-    //modImplementation 'maven.modrinth:fabricproxy-lite:v2.3.0'
+    //modImplementation 'maven.modrinth:fabricproxy-lite:v2.6.0'
     //modImplementation 'com.moandjiezana.toml:toml4j:0.7.2'
 
-    // CrossStitch (basically required for FabricProxy-Lite, increases the compatibility and allows operators)
-    // https://github.com/VelocityPowered/CrossStitch
-    //modImplementation 'maven.modrinth:crossstitch:0.1.5'
 
     // TODO These problems here could occur because loom, fabric or sponge or just something remaps the stuff
     // Error got because Identifier is null
