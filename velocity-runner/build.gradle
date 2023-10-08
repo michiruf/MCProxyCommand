@@ -11,7 +11,7 @@ dependencies {
 }
 
 application {
-    mainClassName = 'com.velocitypowered.proxy.MyMain'
+    mainClass = 'com.velocitypowered.proxy.MyMain'
 }
 
 tasks.run.workingDir = 'run'
