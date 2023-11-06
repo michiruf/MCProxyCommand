@@ -5,13 +5,13 @@ plugins {
 
 dependencies {
     // File got from https://papermc.io/downloads#Velocity
-    implementation files('lib/velocity-3.1.2-SNAPSHOT-200.jar')
+    implementation files('lib/velocity-3.2.0-SNAPSHOT-265.jar')
 
     implementation project(':velocity-plugin')
 }
 
 application {
-    mainClassName = 'com.velocitypowered.proxy.MyMain'
+    mainClass = 'com.velocitypowered.proxy.MyMain'
 }
 
 tasks.run.workingDir = 'run'

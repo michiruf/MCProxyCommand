@@ -38,7 +38,7 @@ jobs:
         if: success()
         uses: gradle/gradle-build-action@v2
         with:
-          gradle-version: 7.4.2
+          gradle-version: 8.4
 
       - name: Build fabric-mod
         if: success()
@@ -61,7 +61,7 @@ jobs:
           draft: false
           prerelease: false
           fail_on_unmatched_files: true
-
+          
       - name: Upload fabric-mod to modrinth
         if: success()
         run: gradle :fabric-mod:modrinth

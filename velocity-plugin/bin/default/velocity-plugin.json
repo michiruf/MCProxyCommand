@@ -1,0 +1,1 @@
+{"id":"proxy-command","name":"ProxyCommand","description":"Execute commands on a velocity proxy server from minecraft nodes","url":"https://github.com/michiruf/MCProxyCommand","authors":["Michael Ruf"],"dependencies":[],"main":"de.michiruf.proxycommand.velocity.ProxyCommandPlugin"}
