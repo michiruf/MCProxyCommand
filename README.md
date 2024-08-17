@@ -2,6 +2,9 @@
 
 A command that allows to send commands from you minecraft server instances to a velocity proxy.
 
+// TODO Use this Platform section from here (also needs Metrics.Factory and bStats):
+https://github.com/OskarsMC-Plugins/execute/blob/main/README.md
+
 
 ## Installation
 

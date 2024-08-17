@@ -58,6 +58,8 @@ dependencies {
 
     // TODO These problems here could occur because loom, fabric or sponge or just something remaps the stuff
     // Error got because Identifier is null
+	
+	// TODO Try again with 'modRuntime' (seen in this readme https://github.com/Flemmli97/Flan)
 
     implementation project(':common')
     include project(':common')
